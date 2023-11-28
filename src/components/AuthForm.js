@@ -29,7 +29,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
         value={password}
         onChangeText={setPassword}
       />
-      {errorMessage ? <Text style={styleserrorMessage}>{errorMessage}</Text>: null}
+      {errorMessage ? <Text style={styles.errorMessage}>{errorMessage}</Text>: null}
       <Spacer>
         <Button
           title={submitButtonText}

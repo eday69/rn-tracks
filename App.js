@@ -10,8 +10,11 @@ import TrackListScreen from './src/screens/TrackListScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext'
 import { setNavigator } from './src/navigationRef';
+import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const switchNavigator = createSwitchNavigator({
+  resolveAuth: ResolveAuthScreen,
   loginFlow: createStackNavigator({
     SignUp: SignUpScreen,
     SignIn: SignInScreen,
@@ -31,8 +34,10 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
-    <AuthProvider>
-      <App ref={(navigator) => { setNavigator(navigator) }}/>
-    </AuthProvider>
+    <SafeAreaProvider>
+      <AuthProvider>
+        <App ref={(navigator) => { setNavigator(navigator) }}/>
+      </AuthProvider>
+    </SafeAreaProvider>
   )
 }
