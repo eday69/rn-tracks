@@ -13,6 +13,7 @@ import { setNavigator } from './src/navigationRef';
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as LocationProvider } from './src/context/LocationContext'
+import { Provider as TrackProvider } from './src/context/TrackContext'
 
 const switchNavigator = createSwitchNavigator({
   resolveAuth: ResolveAuthScreen,
@@ -36,11 +37,13 @@ const App = createAppContainer(switchNavigator);
 export default () => {
   return (
     <SafeAreaProvider>
-      <LocationProvider>
-        <AuthProvider>
-          <App ref={(navigator) => { setNavigator(navigator) }}/>
-        </AuthProvider>
-      </LocationProvider>
+      <TrackProvider>
+        <LocationProvider>
+          <AuthProvider>
+            <App ref={(navigator) => { setNavigator(navigator) }}/>
+          </AuthProvider>
+        </LocationProvider>
+      </TrackProvider>
     </SafeAreaProvider>
   )
 }
