@@ -14,6 +14,17 @@ import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as LocationProvider } from './src/context/LocationContext'
 import { Provider as TrackProvider } from './src/context/TrackContext'
+import { FontAwesome } from '@expo/vector-icons';
+
+const trackListFlow = createStackNavigator({
+  TrackList: TrackListScreen,
+  TrackDetail: TrackDetailScreen
+});
+
+trackListFlow.navigationOptions = {
+  title: 'Tracks',
+  tabBarIcon: <FontAwesome name="th-list" size={24} color="black" />
+}
 
 const switchNavigator = createSwitchNavigator({
   resolveAuth: ResolveAuthScreen,
@@ -23,10 +34,7 @@ const switchNavigator = createSwitchNavigator({
   }),
 
   mainFlow: createMaterialBottomTabNavigator({
-    trackListFlow: createStackNavigator({
-      TrackList: TrackListScreen,
-      TrackDetail: TrackDetailScreen
-    }),
+    trackListFlow,
     TrackCreate: TrackCreateScreen,
     Account: AccountScreen
   })
